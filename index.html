@@ -1,1 +1,138 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Secure Portal</title> <style> body { font-family: 'Poppins', sans-serif; background-color: #121212; color: white; text-align: center; transition: background 0.5s ease; cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur210.cur'), auto; } h1 { font-size: 3rem; margin-top: 20px; } .container { display: none; margin-top: 50px; } .link-box { display: inline-block; padding: 30px 40px; background: #1e1e1e; border-radius: 30px; transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; font-size: 1.6rem; box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3); margin: 20px; } .link-box:hover { transform: scale(1.2); background: #3a1c71; box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.5); } .settings { position: absolute; top: 10px; right: 10px; cursor: pointer; } .settings-menu { display: none; position: absolute; top: 50px; right: 10px; background: #222; padding: 20px; border-radius: 10px; box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2); } .settings-menu select, .settings-menu button { display: block; margin: 10px 0; } #passkeyInput, button { padding: 10px; font-size: 1.2rem; border-radius: 10px; border: none; } button { background: #8A2BE2; color: white; cursor: pointer; } button:hover { background: #6A1BB2; } .admin-panel { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #222; padding: 20px; border-radius: 10px; box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2); } .user-list { margin-top: 20px; background: #1e1e1e; padding: 10px; border-radius: 10px; } </style> </head> <body> <h1>🌑 Oblivion Gateway</h1> <div class="settings" onclick="toggleSettings()">⚙️</div> <div class="settings-menu" id="settingsMenu"> <label>Theme:</label> <select id="themeSwitcher" onchange="changeTheme()"> <option value="dark">Dark</option> <option value="light">Light</option> <option value="galaxy">Galaxy</option> <option value="moon">Moon</option> </select> <button onclick="resetPasskey()">Reset Passkey</button> </div> <div id="passkeyScreen"> <h2>Enter Passkey</h2> <input type="password" id="passkeyInput"> <button onclick="checkPasskey()">Enter</button> </div> <div class="container" id="mainContent"> <h1>Welcome to Your Portal</h1> <div class="link-box"> <h2 style="font-size: 2rem;">Proxies</h2> <p style="font-size: 1.4rem;">Utopia</p> <a href="https://cells.school.jaaax.com/" target="_blank">Visit</a> </div> <div class="link-box"> <h2 style="font-size: 2rem;">Work</h2> <p style="font-size: 1.4rem;">Sentral</p> <a href="https://www.sentral.com.au/" target="_blank">Visit</a> </div> </div> <div class="admin-panel" id="adminPanel"> <h2>Admin Panel</h2> <p>Ban users by entering their ID:</p> <input type="text" id="banInput" placeholder="User ID"> <button onclick="banUser()">Ban</button> <button onclick="closeAdminPanel()">Close</button> <div class="user-list" id="userList"><h3>Active Users</h3></div> </div> <script> function toggleSettings() { const settingsMenu = document.getElementById("settingsMenu"); settingsMenu.style.display = (settingsMenu.style.display === "block" ? "none" : "block"); } function checkPasskey() { const savedPasskey = localStorage.getItem("passkey"); const enteredPasskey = document.getElementById("passkeyInput").value; if (!savedPasskey) { localStorage.setItem("passkey", enteredPasskey); alert("Passkey set! Please remember it."); document.getElementById("passkeyScreen").style.display = "none"; document.getElementById("mainContent").style.display = "block"; } else if (enteredPasskey === savedPasskey) { document.getElementById("passkeyScreen").style.display = "none"; document.getElementById("mainContent").style.display = "block"; } else { alert("Incorrect passkey!"); } } document.addEventListener("keydown", function(event) { if (event.shiftKey && event.key === "=") { document.getElementById("adminPanel").style.display = "block"; } }); </script> </body> </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Portal</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            transition: background 0.5s ease;
+            cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur210.cur'), auto;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+        .container {
+            display: none;
+            margin-top: 50px;
+        }
+        .link-box {
+            display: inline-block;
+            padding: 30px 40px;
+            background: #1e1e1e;
+            border-radius: 30px;
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1.6rem;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            margin: 20px;
+        }
+        .link-box:hover {
+            transform: scale(1.2);
+            background: #3a1c71;
+            box-shadow: 0px 0px 25px rgba(255, 255, 255, 0.5);
+        }
+        .settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .settings-menu {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 10px;
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
+        }
+        .settings-menu select, .settings-menu button {
+            display: block;
+            margin: 10px 0;
+        }
+        #passkeyInput, button {
+            padding: 10px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            border: none;
+        }
+        button {
+            background: #8A2BE2;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #6A1BB2;
+        }
+        .admin-panel {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
+        }
+        .user-list {
+            margin-top: 20px;
+            background: #1e1e1e;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function changeTheme() {
+            let theme = document.getElementById('themeSwitcher').value;
+            if (theme === 'dark') {
+                document.body.style.backgroundColor = '#121212';
+                document.body.style.color = 'white';
+            } else if (theme === 'light') {
+                document.body.style.backgroundColor = '#ffffff';
+                document.body.style.color = '#000000';
+            } else if (theme === 'galaxy') {
+                document.body.style.background = 'url("https://source.unsplash.com/1600x900/?galaxy,stars") no-repeat center center/cover';
+            } else if (theme === 'moon') {
+                document.body.style.background = 'url("https://source.unsplash.com/1600x900/?moon") no-repeat center center/cover';
+            } else if (theme === 'neon') {
+                document.body.style.background = 'black';
+                document.body.style.color = '#0ff';
+            } else if (theme === 'cyberpunk') {
+                document.body.style.background = 'purple';
+                document.body.style.color = 'lime';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>🌑 Oblivion Gateway</h1>
+    <div class="settings" onclick="toggleSettings()">⚙️</div>
+    <div class="settings-menu" id="settingsMenu">
+        <label>Theme:</label>
+        <select id="themeSwitcher" onchange="changeTheme()">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="galaxy">Galaxy</option>
+            <option value="moon">Moon</option>
+            <option value="neon">Neon</option>
+            <option value="cyberpunk">Cyberpunk</option>
+        </select>
+        <button onclick="resetPasskey()">Reset Passkey</button>
+    </div>
+    <div id="passkeyScreen">
+        <h2>Enter Passkey</h2>
+        <input type="password" id="passkeyInput">
+        <button onclick="checkPasskey()">Enter</button>
+    </div>
+    <div class="container" id="mainContent">
+        <h1>Welcome to Your Portal</h1>
+    </div>
+</body>
+</html>
