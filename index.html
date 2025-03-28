@@ -114,6 +114,25 @@
                 document.body.style.color = 'lime';
             }
         }
+        
+        function checkPasskey() {
+            let storedPasskey = localStorage.getItem('userPasskey');
+            let enteredPasskey = document.getElementById('passkeyInput').value;
+            if (!storedPasskey) {
+                localStorage.setItem('userPasskey', enteredPasskey);
+                alert('Passkey set! Please remember it.');
+                showMainContent();
+            } else if (enteredPasskey === storedPasskey) {
+                showMainContent();
+            } else {
+                alert('Incorrect passkey!');
+            }
+        }
+        
+        function showMainContent() {
+            document.getElementById('passkeyScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
     </script>
 </head>
 <body>
