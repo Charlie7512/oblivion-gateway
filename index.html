@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Portal</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #121212;
+            color: white;
+            text-align: center;
+            transition: background 0.5s ease;
+        }
+        .container {
+            display: none;
+            margin-top: 50px;
+        }
+        .link-box {
+            display: inline-block;
+            padding: 20px;
+            background: #1e1e1e;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+        .link-box:hover {
+            transform: scale(1.1);
+        }
+        .settings {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌑 Oblivion Gateway</h1>
+    <div class="settings">
+        <select id="themeSwitcher">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="galaxy">Galaxy</option>
+        </select>
+    </div>
+    <div id="passkeyScreen">
+        <h2>Enter Passkey</h2>
+        <input type="password" id="passkeyInput">
+        <button onclick="checkPasskey()">Enter</button>
+    </div>
+    <div class="container" id="mainContent">
+        <h1>Welcome to Your Portal</h1>
+        <div class="link-box">
+            <h2>Utopia</h2>
+            <p>Proxies</p>
+            <a href="https://cells.school.jaaax.com/" target="_blank">Visit</a>
+        </div>
+    </div>
+    <script>
+        function checkPasskey() {
+            const passkey = localStorage.getItem('userPasskey');
+            const input = document.getElementById('passkeyInput').value;
+            if (!passkey) {
+                localStorage.setItem('userPasskey', input);
+                showContent();
+            } else if (input === passkey) {
+                showContent();
+            } else {
+                alert('Wrong passkey!');
+            }
+        }
+        function showContent() {
+            document.getElementById('passkeyScreen').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+        }
+        document.getElementById('themeSwitcher').addEventListener('change', function() {
+            const theme = this.value;
+            if (theme === 'light') {
+                document.body.style.background = '#f0f0f0';
+                document.body.style.color = 'black';
+            } else if (theme === 'galaxy') {
+                document.body.style.background = 'url(https://source.unsplash.com/1600x900/?space)';
+                document.body.style.color = 'white';
+            } else {
+                document.body.style.background = '#121212';
+                document.body.style.color = 'white';
+            }
+        });
+    </script>
+</body>
+</html>
