@@ -51,7 +51,7 @@
             border-radius: 10px;
             box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
         }
-        .settings-menu select, .settings-menu button, .settings-menu input {
+        .settings-menu select, .settings-menu button {
             display: block;
             margin: 10px 0;
         }
@@ -68,8 +68,6 @@
             <option value="galaxy">Galaxy</option>
             <option value="moon">Moon</option>
         </select>
-        <label><input type="checkbox" id="animatedCursor" onchange="toggleAnimatedCursor()"> Animated Cursor</label>
-        <label><input type="checkbox" id="dimMode" onchange="toggleDimMode()"> Dim Mode</label>
         <button onclick="resetPasskey()">Reset Passkey</button>
     </div>
     <div id="passkeyScreen">
@@ -111,18 +109,6 @@
             } else {
                 document.body.style.backgroundColor = "#121212";
                 document.body.style.color = "white";
-            }
-        }
-
-        function toggleAnimatedCursor() {
-            document.body.style.cursor = document.getElementById("animatedCursor").checked ? "url('https://cur.cursors-4u.net/cursors/cur-2/cur192.ani'), auto" : "auto";
-        }
-
-        function toggleDimMode() {
-            if (document.getElementById("dimMode").checked) {
-                document.body.style.filter = "brightness(0.7)";
-            } else {
-                document.body.style.filter = "none";
             }
         }
 
