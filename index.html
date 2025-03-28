@@ -71,38 +71,6 @@
             background: #8a54e0;
             box-shadow: 0px 5px 18px rgba(255, 255, 255, 0.3);
         }
-        .chatbot-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #a56eff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
-        }
-        .chatbot-box {
-            display: none;
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 300px;
-            background: #222;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
-        }
-        .chatbot-box input {
-            width: 90%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 5px;
-            border: none;
-        }
     </style>
 </head>
 <body>
@@ -134,12 +102,6 @@
             <p style="font-size: 1.4rem;">Sentral</p>
             <a href="https://www.sentral.com.au/" target="_blank">Visit</a>
         </div>
-    </div>
-    <div class="chatbot-icon" onclick="toggleChatbot()">💬</div>
-    <div class="chatbot-box" id="chatbotBox">
-        <h3>AI Assistant</h3>
-        <p>Ask me anything!</p>
-        <input type="text" id="chatInput" placeholder="Type your message...">
     </div>
     <script>
         const storedPasskey = localStorage.getItem("passkey");
