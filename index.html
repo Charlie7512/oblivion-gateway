@@ -89,6 +89,11 @@
         }
     </style>
     <script>
+        function toggleSettings() {
+            let menu = document.getElementById('settingsMenu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+        
         function changeTheme() {
             let theme = document.getElementById('themeSwitcher').value;
             if (theme === 'dark') {
