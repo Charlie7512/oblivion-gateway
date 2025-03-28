@@ -112,7 +112,33 @@
             }
         }
 
+        function checkPasskey() {
+            const savedPasskey = localStorage.getItem("passkey");
+            const enteredPasskey = document.getElementById("passkeyInput").value;
+            if (!savedPasskey) {
+                localStorage.setItem("passkey", enteredPasskey);
+                alert("Passkey set! Please remember it.");
+                document.getElementById("passkeyScreen").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+            } else if (enteredPasskey === savedPasskey) {
+                document.getElementById("passkeyScreen").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+            } else {
+                alert("Incorrect passkey!");
+            }
+        }
+
+        function resetPasskey() {
+            localStorage.removeItem("passkey");
+            alert("Passkey has been reset. Reload the page to set a new one.");
+        }
+
         window.onload = function () {
+            if (!localStorage.getItem("passkey")) {
+                document.getElementById("passkeyScreen").style.display = "block";
+            } else {
+                document.getElementById("passkeyScreen").style.display = "block";
+            }
             if (localStorage.getItem("selectedTheme")) {
                 document.getElementById("themeSwitcher").value = localStorage.getItem("selectedTheme");
                 changeTheme();
