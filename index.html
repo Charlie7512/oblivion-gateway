@@ -82,6 +82,7 @@
             <option value="dark">Dark</option>
             <option value="light">Light</option>
             <option value="galaxy">Galaxy</option>
+            <option value="moon">Moon</option>
         </select>
         <button onclick="resetPasskey()">Reset Passkey</button>
     </div>
@@ -137,6 +138,9 @@
             } else if (theme === "galaxy") {
                 document.body.style.background = "url('https://source.unsplash.com/1600x900/?galaxy,stars') no-repeat center center/cover";
                 document.body.style.color = "white";
+            } else if (theme === "moon") {
+                document.body.style.background = "#1a1a2e";
+                document.body.style.color = "#c0c0c0";
             } else {
                 document.body.style.backgroundColor = "#121212";
                 document.body.style.color = "white";
