@@ -150,17 +150,8 @@
             }
         }
         
-        function banUser() {
-            const userId = document.getElementById("banInput").value;
-            alert("User " + userId + " has been banned!");
-        }
-        
-        function closeAdminPanel() {
-            document.getElementById("adminPanel").style.display = "none";
-        }
-        
         document.addEventListener("keydown", function(event) {
-            if (event.ctrlKey && event.shiftKey && event.key === "E") {
+            if (event.shiftKey && event.key === "=") {
                 document.getElementById("adminPanel").style.display = "block";
             }
         });
