@@ -142,9 +142,24 @@
         <input type="text" id="chatInput" placeholder="Type your message...">
     </div>
     <script>
-        function toggleChatbot() {
-            const chatbot = document.getElementById('chatbotBox');
-            chatbot.style.display = chatbot.style.display === 'block' ? 'none' : 'block';
+        const storedPasskey = localStorage.getItem("passkey");
+
+        function checkPasskey() {
+            const inputKey = document.getElementById("passkeyInput").value;
+            if (!storedPasskey) {
+                localStorage.setItem("passkey", inputKey);
+                document.getElementById("passkeyScreen").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+            } else if (inputKey === storedPasskey) {
+                document.getElementById("passkeyScreen").style.display = "none";
+                document.getElementById("mainContent").style.display = "block";
+            } else {
+                alert("Incorrect passkey");
+            }
+        }
+
+        if (storedPasskey) {
+            document.getElementById("passkeyScreen").style.display = "block";
         }
     </script>
 </body>
