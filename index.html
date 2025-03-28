@@ -87,30 +87,6 @@
             padding: 10px;
             border-radius: 10px;
         }
-        .chat-box {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #222;
-            padding: 15px;
-            border-radius: 10px;
-            width: 300px;
-            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
-        }
-        .chat-messages {
-            height: 200px;
-            overflow-y: auto;
-            background: #1e1e1e;
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .chat-input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 10px;
-            border: none;
-        }
     </style>
 </head>
 <body>
@@ -133,25 +109,6 @@
     </div>
     <div class="container" id="mainContent">
         <h1>Welcome to Your Portal</h1>
-        <div class="chat-box">
-            <div class="chat-messages" id="chatMessages"></div>
-            <input type="text" id="chatInput" class="chat-input" placeholder="Type a message..." onkeypress="sendMessage(event)">
-        </div>
     </div>
-    <script>
-        function sendMessage(event) {
-            if (event.key === "Enter") {
-                const input = document.getElementById("chatInput");
-                const message = input.value;
-                if (message.trim() !== "") {
-                    const chatBox = document.getElementById("chatMessages");
-                    const msgElement = document.createElement("p");
-                    msgElement.textContent = "You: " + message;
-                    chatBox.appendChild(msgElement);
-                    input.value = "";
-                }
-            }
-        }
-    </script>
 </body>
 </html>
