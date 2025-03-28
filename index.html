@@ -11,6 +11,7 @@
             color: white;
             text-align: center;
             transition: background 0.5s ease;
+            cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur210.cur'), auto;
         }
         h1 {
             font-size: 3rem;
@@ -69,6 +70,10 @@
         button:hover {
             background: #6A1BB2;
         }
+        @keyframes galaxyBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
     </style>
 </head>
 <body>
@@ -117,6 +122,7 @@
             } else if (theme === "galaxy") {
                 document.body.style.background = "url('https://source.unsplash.com/1600x900/?galaxy,stars') no-repeat center center/cover";
                 document.body.style.color = "white";
+                document.body.style.animation = "galaxyBackground 30s linear infinite alternate";
             } else if (theme === "moon") {
                 document.body.style.background = "#1a1a2e";
                 document.body.style.color = "#c0c0c0";
