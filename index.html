@@ -51,25 +51,9 @@
             border-radius: 10px;
             box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
         }
-        .settings-menu select, .settings-menu button {
+        .settings-menu select, .settings-menu button, .settings-menu input {
             display: block;
             margin: 10px 0;
-        }
-        button {
-            background: #a56eff;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            color: white;
-            border-radius: 35px;
-            cursor: pointer;
-            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
-        }
-        button:hover {
-            transform: scale(1.15);
-            background: #8a54e0;
-            box-shadow: 0px 5px 18px rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
@@ -84,6 +68,8 @@
             <option value="galaxy">Galaxy</option>
             <option value="moon">Moon</option>
         </select>
+        <label><input type="checkbox" id="animatedCursor" onchange="toggleAnimatedCursor()"> Animated Cursor</label>
+        <label><input type="checkbox" id="dimMode" onchange="toggleDimMode()"> Dim Mode</label>
         <button onclick="resetPasskey()">Reset Passkey</button>
     </div>
     <div id="passkeyScreen">
@@ -105,26 +91,6 @@
         </div>
     </div>
     <script>
-        const storedPasskey = localStorage.getItem("passkey");
-
-        function checkPasskey() {
-            const inputKey = document.getElementById("passkeyInput").value;
-            if (!storedPasskey) {
-                localStorage.setItem("passkey", inputKey);
-                document.getElementById("passkeyScreen").style.display = "none";
-                document.getElementById("mainContent").style.display = "block";
-            } else if (inputKey === storedPasskey) {
-                document.getElementById("passkeyScreen").style.display = "none";
-                document.getElementById("mainContent").style.display = "block";
-            } else {
-                alert("Incorrect passkey");
-            }
-        }
-
-        if (storedPasskey) {
-            document.getElementById("passkeyScreen").style.display = "block";
-        }
-
         function toggleSettings() {
             const settingsMenu = document.getElementById("settingsMenu");
             settingsMenu.style.display = (settingsMenu.style.display === "block" ? "none" : "block");
@@ -132,6 +98,7 @@
 
         function changeTheme() {
             const theme = document.getElementById("themeSwitcher").value;
+            localStorage.setItem("selectedTheme", theme);
             if (theme === "light") {
                 document.body.style.backgroundColor = "#f5f5f5";
                 document.body.style.color = "black";
@@ -146,6 +113,25 @@
                 document.body.style.color = "white";
             }
         }
+
+        function toggleAnimatedCursor() {
+            document.body.style.cursor = document.getElementById("animatedCursor").checked ? "url('https://cur.cursors-4u.net/cursors/cur-2/cur192.ani'), auto" : "auto";
+        }
+
+        function toggleDimMode() {
+            if (document.getElementById("dimMode").checked) {
+                document.body.style.filter = "brightness(0.7)";
+            } else {
+                document.body.style.filter = "none";
+            }
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem("selectedTheme")) {
+                document.getElementById("themeSwitcher").value = localStorage.getItem("selectedTheme");
+                changeTheme();
+            }
+        };
     </script>
 </body>
 </html>
