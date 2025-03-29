@@ -19,7 +19,7 @@
             margin-top: 20px;
         }
         .container {
-            display: none;
+            display: block; /* Make sure the links are visible after the passkey */
             margin-top: 50px;
         }
         .link-box {
@@ -87,7 +87,7 @@
             let menu = document.getElementById('settingsMenu');
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         }
-        
+
         function checkPasskey() {
             let storedPasskey = localStorage.getItem('userPasskey');
             let enteredPasskey = document.getElementById('passkeyInput').value;
@@ -101,7 +101,7 @@
                 alert('Incorrect passkey!');
             }
         }
-        
+
         function showMainContent() {
             document.getElementById('passkeyScreen').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
