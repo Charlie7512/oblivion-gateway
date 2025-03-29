@@ -128,6 +128,11 @@
                 favicon.href = 'https://statics.teams.cdn.office.net/hashed/favicon.ico';
             }
         }
+        
+        function changeCursor() {
+            let cursorChoice = document.getElementById('cursorSwitcher').value;
+            document.body.style.cursor = `url('${cursorChoice}'), auto`;
+        }
     </script>
 </head>
 <body>
@@ -148,18 +153,13 @@
             <option value="classroom">Google Classroom</option>
             <option value="teams">Microsoft Teams</option>
         </select>
+        <label>Cursor:</label>
+        <select id="cursorSwitcher" onchange="changeCursor()">
+            <option value="https://cur.cursors-4u.net/cursors/cur-2/cur210.cur">Default</option>
+            <option value="https://cur.cursors-4u.net/cursors/cur-5/cur438.cur">Cool Pointer</option>
+            <option value="https://cur.cursors-4u.net/cursors/cur-3/cur245.cur">Fire Cursor</option>
+        </select>
         <button onclick="resetPasskey()">Reset Passkey</button>
-    </div>
-    <div id="passkeyScreen">
-        <h2>Enter Passkey</h2>
-        <input type="password" id="passkeyInput">
-        <button onclick="checkPasskey()">Enter</button>
-    </div>
-    <div class="container" id="mainContent">
-        <h1>Welcome to Your Portal</h1>
-        <div class="link-box"><a href="https://cells.school.jaaax.com/" target="_blank" style="color:white; text-decoration: none;">Proxies: Utopia</a></div>
-        <div class="link-box"><a href="https://www.sentral.com.au/" target="_blank" style="color:white; text-decoration: none;">Work: Sentral</a></div>
-        <div class="link-box"><a href="https://unblocked-games.s3.amazonaws.com/index.html" target="_blank" style="color:white; text-decoration: none;">Games: Freezenova</a></div>
     </div>
 </body>
 </html>
