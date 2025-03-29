@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Portal</title>
+    <link id="favicon" rel="icon" type="image/png" href="https://ssl.gstatic.com/classroom/favicon.png">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -117,6 +118,16 @@
             document.getElementById('passkeyScreen').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
         }
+
+        function changeFavicon() {
+            let favicon = document.getElementById('favicon');
+            let iconChoice = document.getElementById('faviconSwitcher').value;
+            if (iconChoice === 'classroom') {
+                favicon.href = 'https://ssl.gstatic.com/classroom/favicon.png';
+            } else if (iconChoice === 'teams') {
+                favicon.href = 'https://statics.teams.cdn.office.net/hashed/favicon.ico';
+            }
+        }
     </script>
 </head>
 <body>
@@ -131,6 +142,11 @@
             <option value="moon">Moon</option>
             <option value="neon">Neon</option>
             <option value="cyberpunk">Cyberpunk</option>
+        </select>
+        <label>Tab Icon:</label>
+        <select id="faviconSwitcher" onchange="changeFavicon()">
+            <option value="classroom">Google Classroom</option>
+            <option value="teams">Microsoft Teams</option>
         </select>
         <button onclick="resetPasskey()">Reset Passkey</button>
     </div>
