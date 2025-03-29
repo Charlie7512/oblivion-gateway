@@ -19,8 +19,8 @@
             margin-top: 20px;
         }
         .container {
-            display: none;
             margin-top: 50px;
+            display: block; /* Ensure links are visible */
         }
         .link-box {
             display: inline-block;
@@ -116,6 +116,7 @@
         function showMainContent() {
             document.getElementById('passkeyScreen').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
+            document.querySelector('.container').style.display = 'block'; // Fix for hidden links
         }
 
         function changeFavicon() {
