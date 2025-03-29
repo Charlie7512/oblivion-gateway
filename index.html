@@ -83,6 +83,35 @@
         button:hover {
             background: #6A1BB2;
         }
+
+        /* Theme Styles */
+        body.dark {
+            background-color: #121212;
+            color: white;
+        }
+        body.light {
+            background-color: #f4f4f4;
+            color: black;
+        }
+        body.star {
+            background-color: #1a1a1a;
+            color: #e1e1e1;
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+        }
+        body.moon {
+            background-color: #212121;
+            color: #dcdcdc;
+            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
+        }
+        body.neon {
+            background-color: #222222;
+            color: white;
+        }
+        body.cyberpunk {
+            background-color: #111;
+            color: #00ffcc;
+            background-image: url('https://www.transparenttextures.com/patterns/spectre.png');
+        }
     </style>
     <script>
         function toggleSettings() {
@@ -108,9 +137,14 @@
             document.getElementById('passkeyScreen').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
         }
+
+        function changeTheme() {
+            let theme = document.getElementById('themeSwitcher').value;
+            document.body.className = theme;
+        }
     </script>
 </head>
-<body>
+<body class="dark">
     <div id="passkeyScreen">
         <h1>Enter Passkey</h1>
         <input type="password" id="passkeyInput" placeholder="Enter your passkey">
