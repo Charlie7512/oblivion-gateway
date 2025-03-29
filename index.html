@@ -130,23 +130,30 @@
     </script>
 </head>
 <body>
-    <h1>🌑 Oblivion Gateway</h1>
-    <div class="settings" onclick="toggleSettings()">⚙️</div>
-    <div class="settings-menu" id="settingsMenu">
-        <label>Theme:</label>
-        <select id="themeSwitcher" onchange="changeTheme()">
-            <option value="dark">Dark</option>
-            <option value="light">Light</option>
-            <option value="star">Star</option>
-            <option value="moon">Moon</option>
-            <option value="neon">Neon</option>
-            <option value="cyberpunk">Cyberpunk</option>
-        </select>
-        <label>Tab Icon:</label>
-        <select id="faviconSwitcher" onchange="changeFavicon()">
-            <option value="classroom">Google Classroom</option>
-            <option value="teams">Microsoft Teams</option>
-        </select>
+    <div id="passkeyScreen">
+        <h1>Enter Passkey</h1>
+        <input type="password" id="passkeyInput" placeholder="Enter your passkey">
+        <button onclick="checkPasskey()">Submit</button>
+    </div>
+    <div id="mainContent" style="display: none;">
+        <h1>🌑 Oblivion Gateway</h1>
+        <div class="settings" onclick="toggleSettings()">⚙️</div>
+        <div class="settings-menu" id="settingsMenu">
+            <label>Theme:</label>
+            <select id="themeSwitcher" onchange="changeTheme()">
+                <option value="dark">Dark</option>
+                <option value="light">Light</option>
+                <option value="star">Star</option>
+                <option value="moon">Moon</option>
+                <option value="neon">Neon</option>
+                <option value="cyberpunk">Cyberpunk</option>
+            </select>
+            <label>Tab Icon:</label>
+            <select id="faviconSwitcher" onchange="changeFavicon()">
+                <option value="classroom">Google Classroom</option>
+                <option value="teams">Microsoft Teams</option>
+            </select>
+        </div>
     </div>
 </body>
 </html>
