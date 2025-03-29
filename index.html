@@ -12,7 +12,6 @@
             color: white;
             text-align: center;
             transition: background 0.5s ease;
-            cursor: url('https://cur.cursors-4u.net/cursors/cur-2/cur210.cur'), auto;
             overflow: hidden;
         }
         h1 {
@@ -128,11 +127,6 @@
                 favicon.href = 'https://statics.teams.cdn.office.net/hashed/favicon.ico';
             }
         }
-        
-        function changeCursor() {
-            let cursorChoice = document.getElementById('cursorSwitcher').value;
-            document.body.style.cursor = `url('${cursorChoice}'), auto`;
-        }
     </script>
 </head>
 <body>
@@ -153,13 +147,6 @@
             <option value="classroom">Google Classroom</option>
             <option value="teams">Microsoft Teams</option>
         </select>
-        <label>Cursor:</label>
-        <select id="cursorSwitcher" onchange="changeCursor()">
-            <option value="https://cur.cursors-4u.net/cursors/cur-2/cur210.cur">Default</option>
-            <option value="https://cur.cursors-4u.net/cursors/cur-5/cur438.cur">Cool Pointer</option>
-            <option value="https://cur.cursors-4u.net/cursors/cur-3/cur245.cur">Fire Cursor</option>
-        </select>
-        <button onclick="resetPasskey()">Reset Passkey</button>
     </div>
 </body>
 </html>
