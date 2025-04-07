@@ -1,3 +1,5 @@
+# Shortcuts Box
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,11 +138,37 @@
         function showMainContent() {
             document.getElementById('passkeyScreen').style.display = 'none';
             document.getElementById('mainContent').style.display = 'block';
+            loadShortcuts();
         }
 
         function changeTheme() {
             let theme = document.getElementById('themeSwitcher').value;
             document.body.className = theme;
+        }
+
+        function addShortcut() {
+            const url = document.getElementById('shortcutInput').value;
+            if (url) {
+                let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+                shortcuts.push(url);
+                localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+                document.getElementById('shortcutInput').value = '';
+                loadShortcuts();
+            }
+        }
+
+        function loadShortcuts() {
+            const shortcutsContainer = document.getElementById('shortcutsContainer');
+            shortcutsContainer.innerHTML = '';
+            const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+            shortcuts.forEach(url => {
+                const linkBox = document.createElement('a');
+                linkBox.className = 'link-box';
+                linkBox.href = url;
+                linkBox.target = '_blank';
+                linkBox.textContent = url;
+                shortcutsContainer.appendChild(linkBox);
+            });
         }
     </script>
 </head>
@@ -177,6 +205,12 @@
             <div class="category-box">
                 <h2>Games</h2>
                 <a class="link-box" href="https://unblocked-games.s3.amazonaws.com/index.html" target="_blank">Freezneova</a>
+            </div>
+            <div class="category-box">
+                <h2>Shortcuts</h2>
+                <input type="text" id="shortcutInput" placeholder="Add a website link">
+                <button onclick="addShortcut()">+</button>
+                <div id="shortcutsContainer"></div>
             </div>
         </div>
     </div>
