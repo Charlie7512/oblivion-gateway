@@ -35,6 +35,7 @@
             color: white; 
             width: 120px; 
             text-align: center; 
+            position: relative;
         }
         .link-box:hover {
             transform: scale(1.1); 
@@ -48,6 +49,7 @@
             margin: 20px auto; 
             width: 55%; 
             box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2); 
+            position: relative;
         }
         .settings {
             position: absolute; 
@@ -82,6 +84,19 @@
         }
         button:hover {
             background: #6A1BB2; 
+        }
+        .notification {
+            display: none;
+            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px auto;
+            width: 80%;
+        }
+        .pencil-icon {
+            cursor: pointer;
+            margin-left: 10px;
         }
 
         /* Theme Styles */
@@ -123,31 +138,82 @@
             document.body.className = theme;
         }
 
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.innerText = message;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
         function addShortcut() {
             const shortcutInput = document.getElementById('shortcutInput');
-            const shortcutLink = shortcutInput.value.trim();
-            if (shortcutLink) {
-                const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-                shortcuts.push(shortcutLink);
-                localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
-                shortcutInput.value = '';
-                loadShortcuts();
-            } else {
-                alert('Please enter a link.');
-            }
+            const message = "charlie7512.github.io says: Please enter a link below.";
+            showNotification(message);
+
+            // Create an input field for the user to enter the shortcut link
+            const inputField = document.createElement('input');
+            inputField.type = 'text';
+            inputField.id = 'tempShortcutLink';
+            inputField.placeholder = 'Enter your link here';
+            inputField.style.display = 'block';
+            inputField.style.margin = '10px auto';
+
+            // Append the input field below the notification
+            const notificationContainer = document.getElementById('notificationContainer');
+            notificationContainer.appendChild(inputField);
+            inputField.focus();
+
+            // Create a button to confirm adding the link
+            const confirmButton = document.createElement('button');
+            confirmButton.innerText = 'Add';
+            confirmButton.onclick = function() {
+                const shortcutLink = inputField.value.trim();
+                if (shortcutLink) {
+                    const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+                    shortcuts.push({ link: shortcutLink, name: shortcutLink });
+                    localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+                    inputField.value = '';
+                    loadShortcuts();
+                } else {
+                    alert('Please enter a valid link.');
+                }
+                inputField.remove();
+                confirmButton.remove();
+            };
+            notificationContainer.appendChild(confirmButton);
         }
 
         function loadShortcuts() {
             const shortcutsContainer = document.getElementById('shortcutsContainer');
             shortcutsContainer.innerHTML = '';
             const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-            shortcuts.forEach(link => {
-                const linkBox = document.createElement('a');
-                linkBox.className = 'link-box';
-                linkBox.href = link;
-                linkBox.target = '_blank';
-                linkBox.innerText = link;
-                shortcutsContainer.appendChild(linkBox);
+            shortcuts.forEach((shortcut, index) => {
+                const shortcutBox = document.createElement('div');
+                shortcutBox.className = 'link-box';
+                shortcutBox.innerText = shortcut.name;
+
+                const shortcutLink = document.createElement('a');
+                shortcutLink.href = shortcut.link;
+                shortcutLink.target = '_blank';
+                shortcutLink.innerText = '🔗';
+                shortcutLink.style.paddingLeft = '5px';
+                shortcutBox.appendChild(shortcutLink);
+
+                const pencilIcon = document.createElement('span');
+                pencilIcon.innerHTML = '✏️';
+                pencilIcon.className = 'pencil-icon';
+                pencilIcon.onclick = function() {
+                    const newName = prompt('Enter new name for the shortcut:', shortcut.name);
+                    if (newName) {
+                        shortcuts[index].name = newName;
+                        localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
+                        loadShortcuts();
+                    }
+                };
+                shortcutBox.appendChild(pencilIcon);
+                shortcutsContainer.appendChild(shortcutBox);
             });
         }
     </script>
@@ -189,7 +255,8 @@
             <!-- New Shortcuts Section -->
             <div class="category-box">
                 <h2>Shortcuts <button onclick="addShortcut()" style="cursor: pointer;">➕ Add New Shortcut</button></h2>
-                <input type="text" id="shortcutInput" placeholder="Enter your link here">
+                <div id="notificationContainer"></div>
+                <div id="notification" class="notification"></div>
                 <div id="shortcutsContainer"></div>
             </div>
         </div>
