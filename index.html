@@ -1,5 +1,3 @@
-# Shortcuts Box
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,110 +8,89 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: white;
-            text-align: center;
-            transition: background 0.5s ease;
-            overflow: hidden;
+            background-color: #121212; 
+            color: white; 
+            text-align: center; 
+            transition: background 0.5s ease; 
+            overflow: hidden; 
         }
         h1 {
-            font-size: 3rem;
-            margin-top: 20px;
+            font-size: 3rem; 
+            margin-top: 20px; 
         }
         .container {
-            display: block;
-            margin-top: 50px;
+            display: block; 
+            margin-top: 50px; 
         }
         .link-box {
-            display: inline-block;
-            padding: 10px 15px;
-            background: #1e1e1e;
-            border-radius: 12px;
-            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-            font-size: 1rem;
-            box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
-            margin: 10px;
-            text-decoration: none;
-            color: white;
-            width: 120px;
-            text-align: center;
+            display: inline-block; 
+            padding: 10px 15px; 
+            background: #1e1e1e; 
+            border-radius: 12px; 
+            transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease; 
+            font-size: 1rem; 
+            box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3); 
+            margin: 10px; 
+            text-decoration: none; 
+            color: white; 
+            width: 120px; 
+            text-align: center; 
         }
         .link-box:hover {
-            transform: scale(1.1);
-            background: #3a1c71;
-            box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5);
+            transform: scale(1.1); 
+            background: #3a1c71; 
+            box-shadow: 0px 0px 12px rgba(255, 255, 255, 0.5); 
         }
         .category-box {
-            background: #222;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 20px auto;
-            width: 55%;
-            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
+            background: #222; 
+            border-radius: 15px; 
+            padding: 15px; 
+            margin: 20px auto; 
+            width: 55%; 
+            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2); 
         }
         .settings {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            cursor: pointer;
+            position: absolute; 
+            top: 10px; 
+            right: 10px; 
+            cursor: pointer; 
         }
         .settings-menu {
-            display: none;
-            position: absolute;
-            top: 50px;
-            right: 10px;
-            background: #222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2);
+            display: none; 
+            position: absolute; 
+            top: 50px; 
+            right: 10px; 
+            background: #222; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0px 5px 12px rgba(255, 255, 255, 0.2); 
         }
         .settings-menu select, .settings-menu button {
-            display: block;
-            margin: 10px 0;
+            display: block; 
+            margin: 10px 0; 
         }
         #passkeyInput, button {
-            padding: 10px;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            border: none;
+            padding: 10px; 
+            font-size: 1.2rem; 
+            border-radius: 10px; 
+            border: none; 
         }
         button {
-            background: #8A2BE2;
-            color: white;
-            cursor: pointer;
+            background: #8A2BE2; 
+            color: white; 
+            cursor: pointer; 
         }
         button:hover {
-            background: #6A1BB2;
+            background: #6A1BB2; 
         }
 
         /* Theme Styles */
-        body.dark {
-            background-color: #121212;
-            color: white;
-        }
-        body.light {
-            background-color: #f4f4f4;
-            color: black;
-        }
-        body.star {
-            background-color: #1a1a1a;
-            color: #e1e1e1;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-        }
-        body.moon {
-            background-color: #212121;
-            color: #dcdcdc;
-            background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
-        }
-        body.neon {
-            background-color: #222222;
-            color: white;
-        }
-        body.cyberpunk {
-            background-color: #111;
-            color: #00ffcc;
-            background-image: url('https://www.transparenttextures.com/patterns/spectre.png');
-        }
+        body.dark { background-color: #121212; color: white; }
+        body.light { background-color: #f4f4f4; color: black; }
+        body.star { background-color: #1a1a1a; color: #e1e1e1; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); }
+        body.moon { background-color: #212121; color: #dcdcdc; background-image: url('https://www.transparenttextures.com/patterns/black-linen.png'); }
+        body.neon { background-color: #222222; color: white; }
+        body.cyberpunk { background-color: #111; color: #00ffcc; background-image: url('https://www.transparenttextures.com/patterns/spectre.png'); }
     </style>
     <script>
         function toggleSettings() {
@@ -147,13 +124,16 @@
         }
 
         function addShortcut() {
-            const url = document.getElementById('shortcutInput').value;
-            if (url) {
-                let shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-                shortcuts.push(url);
+            const shortcutInput = document.getElementById('shortcutInput');
+            const shortcutLink = shortcutInput.value.trim();
+            if (shortcutLink) {
+                const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
+                shortcuts.push(shortcutLink);
                 localStorage.setItem('shortcuts', JSON.stringify(shortcuts));
-                document.getElementById('shortcutInput').value = '';
+                shortcutInput.value = '';
                 loadShortcuts();
+            } else {
+                alert('Please enter a link.');
             }
         }
 
@@ -161,12 +141,12 @@
             const shortcutsContainer = document.getElementById('shortcutsContainer');
             shortcutsContainer.innerHTML = '';
             const shortcuts = JSON.parse(localStorage.getItem('shortcuts')) || [];
-            shortcuts.forEach(url => {
+            shortcuts.forEach(link => {
                 const linkBox = document.createElement('a');
                 linkBox.className = 'link-box';
-                linkBox.href = url;
+                linkBox.href = link;
                 linkBox.target = '_blank';
-                linkBox.textContent = url;
+                linkBox.innerText = link;
                 shortcutsContainer.appendChild(linkBox);
             });
         }
@@ -206,10 +186,10 @@
                 <h2>Games</h2>
                 <a class="link-box" href="https://unblocked-games.s3.amazonaws.com/index.html" target="_blank">Freezneova</a>
             </div>
+            <!-- New Shortcuts Section -->
             <div class="category-box">
-                <h2>Shortcuts</h2>
-                <input type="text" id="shortcutInput" placeholder="Add a website link">
-                <button onclick="addShortcut()">+</button>
+                <h2>Shortcuts <button onclick="addShortcut()" style="cursor: pointer;">➕ Add New Shortcut</button></h2>
+                <input type="text" id="shortcutInput" placeholder="Enter your link here">
                 <div id="shortcutsContainer"></div>
             </div>
         </div>
